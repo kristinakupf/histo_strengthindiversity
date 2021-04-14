@@ -1,5 +1,5 @@
 # Histo_StrengthInDiversity
-This repo provides the code for Strength in Diversity: Understanding the impacts of diverse training sets in self-supervised pre-training for histology images
+This repo provides the code for MIDL 2021 short paper Strength in Diversity: Understanding the impacts of diverse training sets in self-supervised pre-training for histology images
 
 ## Abstract
 Self-supervised learning (SSL) has demonstrated success in computer vision tasks for nat-ural  images,  and  recently  histopathological  images,  where  there  is  limited  availability  ofannotations.  Despite this, there has been limited research into how the diversity of sourcedata  used  for  SSL  tasks  impacts  performance.   This  study  quantifies  changes  to  down-stream  classification  of  metastatic  tissue  in  lymph  node  sections  of  the  PatchCamelyondataset  when  datasets  from  different  domains  (natural  images,  textures,  histology)  areused for SSL pre-training.  We show that for cases with limited training data, using diversedatasets from different domains for SSL pre-training can achieve comparable performancewhen compared to SSL pre-training on the target dataset.
