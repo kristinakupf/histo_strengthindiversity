@@ -13,20 +13,20 @@ We implemented a diversity metric used by DeVries et al. (2020)where images from
 To run diversity scores for a specific dataset:
 1. Ensure train data loader is set up for your specific dataset
 2. Run the following command
-``` python diversity_score.py --dataset=$CURR_DATA ```
+``` python ./Diversity/diversity_score.py --dataset=$CURR_DATA ```
 
 ## SSL Pre-training
 ### Rotation SSL pre-training
 This SSL task is a 4-way classification problem where an image is randomly rotated by 0,  90,180, or 270 degrees and the model is tasked with correctly predicting the rotation (Gidariset al., 2018). In our code 4,000 images from each source dataset were randomly rotated and the model was tasked with predicting rotation class.
 
 To run the rotation SSL pre-training task:    
-``` python train.py --dataset=$CURR_DATA --num_classes=$NUM_CLASSES --ss_task='rotation'```
+``` python ./SS_pretrain/train.py --dataset=$CURR_DATA --num_classes=$NUM_CLASSES --ss_task='rotation'```
 
 ### Jigsaw pre-training
 This SSL task involves predicting the solution to a jigsaw puzzle in whichan original image is split into 9 tiles and shuffled (Noroozi and Favaro, 2016). 4,000 images from each source dataset were divided into 9 evenlysized tiles and were shuffled according to 100 pre-determined jigsaw patterns.  Each tile wasforwarded  through  the  model  and  the  outputs  were  concatenated  according  to  the  order specified in a randomly selected jigsaw solution
 
 To run the jigsaw SSL pre-training task:    
-``` python train.py --dataset=$CURR_DATA --num_classes=$NUM_CLASSES --ss_task='jigsaw'```
+``` python ./SS_pretrain/train.py --dataset=$CURR_DATA --num_classes=$NUM_CLASSES --ss_task='jigsaw'```
 
 ## Binary metastatic tissue classification (ie. Target Task)
 For  the  target  task,  we  use  the  PCam  dataset,  consisting  of  327,680  patches  extractedfrom the Camelyon16 dataset (Veeling et al., 2018). A model was trained and evaluated using a re-duced PCam dataset in 2 configs: NC=1,000 (0.76%)andNC=100 (0.076%). 
@@ -34,11 +34,11 @@ Four initialization values are available:
 
 To run model training for fine-tuning to the target task:
 
-```python train.py --pretrain_dataset=$CURR_DATA --data_percent=$DATA_PERCENT --init_cond=$INIT_COND --max_epochs=$MAX_EPOCHS```
+```python ./pcam_classifier/train.py --pretrain_dataset=$CURR_DATA --data_percent=$DATA_PERCENT --init_cond=$INIT_COND --max_epochs=$MAX_EPOCHS```
 
 and for evaluation:
 
-```python train.py --pretrain_dataset=$CURR_DATA --init_cond=$INIT_COND --data_percent=$DATA_PERCENT --is_test```
+```python ./pcam_classifier/train.py --pretrain_dataset=$CURR_DATA --init_cond=$INIT_COND --data_percent=$DATA_PERCENT --is_test```
 
 
 Where:
