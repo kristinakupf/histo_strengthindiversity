@@ -23,7 +23,9 @@ To run the rotation SSL pre-training task:
 ``` python ./SS_pretrain/train.py --dataset=$CURR_DATA --num_classes=$NUM_CLASSES --ss_task='rotation'```
 
 ### Jigsaw pre-training
-This SSL task involves predicting the solution to a jigsaw puzzle in whichan original image is split into 9 tiles and shuffled (Noroozi and Favaro, 2016). 4,000 images from each source dataset were divided into 9 evenlysized tiles and were shuffled according to 100 pre-determined jigsaw patterns.  Each tile wasforwarded  through  the  model  and  the  outputs  were  concatenated  according  to  the  order specified in a randomly selected jigsaw solution
+This SSL task involves predicting the solution to a jigsaw puzzle in whichan original image is split into 9 tiles and shuffled (Noroozi and Favaro, 2016). 4,000 images from each source dataset were divided into 9 evenlysized tiles and were shuffled according to 100 pre-determined jigsaw patterns.  Each tile wasforwarded  through  the  model  and  the  outputs  were  concatenated  according  to  the  order specified in a randomly selected jigsaw solution.
+
+To create permutations for any number of classes run select_permutations.py
 
 To run the jigsaw SSL pre-training task:    
 ``` python ./SS_pretrain/train.py --dataset=$CURR_DATA --num_classes=$NUM_CLASSES --ss_task='jigsaw'```
