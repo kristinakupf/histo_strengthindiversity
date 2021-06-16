@@ -112,10 +112,10 @@ class ImageDataset(data.Dataset):
                 #Validation
                 self.transform=train_image_transform
                 if self.is_test==False:
-                    self.h5_file = target_mod + valid_path  # '../../dataset/pcam/camelyonpatch_level_2_split_valid_x.h5'
+                    self.h5_file = target_mod + valid_path
                 else:
                     #Testing
-                    self.h5_file = target_mod + test_path#'../../dataset/pcam/camelyonpatch_level_2_split_test_x.h5'
+                    self.h5_file = target_mod + test_path
 
             #Save that specific h5 file to index in list
             self.h5_list = (h5py.File(self.h5_file, 'r'))['x']
@@ -167,21 +167,17 @@ class ImageDataset(data.Dataset):
             mean_std = torch.load('data/'+dataset+'/mean_std.pt')
 
         normalize = t.Normalize(mean=mean_std['mean'], std=mean_std['std'])
-        # normalize = t.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-        # normalize = t.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
-        # self.transform.transforms.append(normalize)
+
         self.transform.transforms.append(normalize)
 
-        # self.data = None
 
     def split_tiles(self, img):
         img = self.transform(img)
         img = self.tensor2pil(img)
-        # img.show()
-        # plt.pause(5)
+
 
         #Load pre-calculated permutations of jigsaw puzzle
-        all_perm = np.load('permutations_%d.npy' % (self.num_classes))
+        all_perm = np.load('./jigsaw_setup/permutations_%d.npy' % (self.num_classes))
 
         tiles = [None] * 9
         for n in range(9):

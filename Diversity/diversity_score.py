@@ -22,7 +22,7 @@ parser.add_argument('--mode', choices=['train', 'test'], default='train')
 parser.add_argument('--run_num', type=int, default=1)
 parser.add_argument('--seed', type=int, default=1111)
 parser.add_argument('--model', choices=['resnet34'], default='resnet34')
-parser.add_argument('--batch_size', type=int, default=256)
+parser.add_argument('--batch_size', type=int, default=8)
 parser.add_argument('--lr', type=float, default=1e-4)
 parser.add_argument('--lr_steps', default=[5], nargs='+', type=int)
 parser.add_argument('--wd', type=float, default=1e-4)
@@ -151,7 +151,7 @@ def get_embeddings_from_loader(dataloader, embedder, verbose=False):
 
 
 
-def calculate_diversity_score(dataloader, embedding='swav'):
+def calculate_diversity_score(dataloader, embedding='resnextwsl'):
     '''Calculate diversity of dataset.
 ​
     Args:
